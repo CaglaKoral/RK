@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reisekasse</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1 id="tripTitle">Reisekasse</h1>
+  <button id="shareBtn" class="ghost-btn" title="Link kopieren">🔗 Link teilen</button>
+</header>
+
+<main id="app">
+
+  <section id="setupCard" class="card" hidden>
+    <h2>Reise einrichten</h2>
+    <p class="hint">Das ist ein neuer, leerer Trip. Lege kurz die Basisdaten fest.</p>
+    <label>Reisename
+      <input type="text" id="setupName" placeholder="z. B. Portugal 2026">
+    </label>
+    <div class="row">
+      <label>Person 1
+        <input type="text" id="setupPerson1" placeholder="z. B. Cagla">
+      </label>
+      <label>Person 2
+        <input type="text" id="setupPerson2" placeholder="z. B. Alex">
+      </label>
+    </div>
+    <div class="row">
+      <label>Start
+        <input type="date" id="setupStart">
+      </label>
+      <label>Ende
+        <input type="date" id="setupEnd">
+      </label>
+    </div>
+    <button id="setupSaveBtn" class="primary-btn">Reise anlegen</button>
+  </section>
+
+  <section id="tripView" hidden>
+
+    <section class="stats-grid">
+      <div class="stat-tile">
+        <span class="stat-label">Gesamtausgaben</span>
+        <span class="stat-value" id="statTotal">–</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-label">Tagesdurchschnitt</span>
+        <span class="stat-value" id="statAvg">–</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-label">Reisetage bisher</span>
+        <span class="stat-value" id="statDays">–</span>
+      </div>
+    </section>
+
+    <section class="card" id="splitCard">
+      <h2>Split</h2>
+      <div id="splitContent">–</div>
+    </section>
+
+    <section class="card">
+      <h2>Neue Ausgabe</h2>
+      <form id="expenseForm">
+        <div class="row">
+          <label>Betrag (€)
+            <input type="number" id="fAmount" step="0.01" min="0" required>
+          </label>
+          <label>Kategorie
+            <select id="fCategory">
+              <option value="Essen">Essen</option>
+              <option value="Transport">Transport</option>
+              <option value="Unterkunft">Unterkunft</option>
+              <option value="Aktivitäten">Aktivitäten</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+          </label>
+        </div>
+        <label>Beschreibung
+          <input type="text" id="fDescription" placeholder="Wofür war das?" required>
+        </label>
+        <div class="row">
+          <label>Bezahlt von
+            <select id="fPaidBy"></select>
+          </label>
+          <label>Datum
+            <input type="date" id="fStartDate" required>
+          </label>
+        </div>
+        <label class="checkbox-row">
+          <input type="checkbox" id="fMultiDay">
+          Mehrtägig (z. B. Unterkunft über mehrere Nächte)
+        </label>
+        <label id="fEndDateWrap" hidden>Bis (Enddatum)
+          <input type="date" id="fEndDate">
+        </label>
+        <button type="submit" class="primary-btn">Ausgabe hinzufügen</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Ausgaben nach Tag</h2>
+      <div id="dayList">
+        <p class="hint">Noch keine Ausgaben eingetragen.</p>
+      </div>
+    </section>
+
+  </section>
+
+  <p id="connStatus" class="conn-status"></p>
+
+</main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
